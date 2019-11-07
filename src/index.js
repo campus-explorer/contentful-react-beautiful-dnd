@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import '@atlaskit/css-reset';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Item from './item';
-
 import { TextInput } from '@contentful/forma-36-react-components';
 import { init } from 'contentful-ui-extensions-sdk';
 import '@contentful/forma-36-react-components/dist/styles.css';
@@ -16,14 +15,12 @@ export class App extends React.Component {
   };
 
   constructor(props) {
-	props.sdk.window.startAutoResizer();
     super(props);
     this.state = props.sdk.field.getValue() || '';
   }
 
   componentDidMount() {
-	this.props.sdk.window.updateHeight(500);
-    //this.props.sdk.window.startAutoResizer();
+    this.props.sdk.window.startAutoResizer();
   } 
   onDragEnd = result => {
     const { destination, source, draggableId } = result;
@@ -39,7 +36,6 @@ export class App extends React.Component {
       return;
     }
     const column = this.state.columns[source.droppableId];
-    //copies the taskIDs array to a new array
     const newItemIds = Array.from(column.itemIds);
 
     newItemIds.splice(source.index, 1);
@@ -57,8 +53,6 @@ export class App extends React.Component {
         [newColumn.id]: newColumn,
       },
     };
-    console.log("currVal: ",this.state);
-	console.log("newState: ",newState)
     this.setState(newState);
     this.props.sdk.field.setValue(newState);
   };
