@@ -1,0 +1,1 @@
+contentful-react-beautiful-dnd
